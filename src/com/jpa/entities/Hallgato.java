@@ -19,6 +19,7 @@ import javax.persistence.Table;
 public class Hallgato {
 	// ~~~ Attributes ~~~
 	
+		//FIXME Minden tagváltozó camelCase legyen, minden entitásban
 		// ID: HALLGATO_ID
 		@Id
 		@GeneratedValue(strategy=GenerationType.AUTO)
@@ -31,6 +32,7 @@ public class Hallgato {
 		@Column(name="Nev")
 		private String Nev;
 
+		//FIXME Miért vannak private getterek/setterek? (Több helyen, más entitásokban is)
 		private String getNev() { return Nev; }
 		private void setNev(String setnev) { Nev = setnev; }
 		
@@ -59,10 +61,13 @@ public class Hallgato {
 		public void setKepzes(Kepzes setkepzes) { kepzes = setkepzes; }
 				
 		
+		//FIXME ManyToMany esetén is ki kell választani egy tulajdonos oldalt, és a másik oldalra odatenni a mappedBy-t, több helyen van ilyen
+		//Különben két egyirányú kapcsolatnak tekinti majd a JPA a két oldalt, nem ugyanazon kapcsolat két oldalának.
 		@ManyToMany
 		private List<Targy> targyak;
 		
-		public void addTargy(Targy addtargy) { targyak.add(addtargy); }
+		//FIXME Az addXXX metódusokat mindenhol úgy érdemes megírni, hogy a kapcsolat másik oldalát is beállítják. 
+		public void addTargy(Targy addtargy) { targyak.add(addtargy);}
 		public void removeTargy(Targy removetargy) { targyak.remove(removetargy); }
 		
 		
