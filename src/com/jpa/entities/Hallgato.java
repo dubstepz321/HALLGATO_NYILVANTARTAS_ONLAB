@@ -1,6 +1,6 @@
 package com.jpa.entities;
 
-import java.util.Date;
+
 import java.util.List;
 
 import javax.persistence.Column;
@@ -20,6 +20,7 @@ public class Hallgato {
 	// ~~~ Attributes ~~~
 	
 		// ID: HallgatoId
+
 		@Id
 		@GeneratedValue(strategy=GenerationType.AUTO)
 		@Column(name="HallgatoId")
@@ -31,9 +32,10 @@ public class Hallgato {
 		@Column(name="Nev")
 		private String Nev;
 
+
 		public String getNev() { return Nev; }
 		public void setNev(String setnev) { Nev = setnev; }
-		
+
 		// Neptun
 		@Column(name="Neptun")
 		private String Neptun;
@@ -58,7 +60,7 @@ public class Hallgato {
 		public Kepzes getKepzes() {return kepzes;}
 		public void setKepzes(Kepzes setkepzes) { kepzes = setkepzes; }
 				
-		
+
 		@ManyToMany
 		private List<Targy> targyak;
 		
@@ -66,6 +68,7 @@ public class Hallgato {
 			targyak.add(addtargy); 
 			addtargy.addHallgato(this);
 		}
+
 		public void removeTargy(Targy removetargy) { targyak.remove(removetargy); }
 		
 		

@@ -33,7 +33,7 @@ public class Targy {
 		private String Targykod;
 		
 		public String getTargykod() { return Targykod; }
-		private void setTargykod(String settargykod) { Targykod = settargykod; }
+		public void setTargykod(String settargykod) { Targykod = settargykod; }
 		
 		// Kredit
 		@Column(name="Kredit")

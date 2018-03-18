@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 
 *.class
 *.class
+*.class
+=======
+build/
+>>>>>>> 801036c4d366d8d81e1d90333a16cb03dc4a023c
 *.class
