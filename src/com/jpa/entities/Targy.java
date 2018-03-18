@@ -20,32 +20,32 @@ public class Targy {
 	
 	// ~~~ Attributes ~~~
 	
-		// ID: KEPZES_ID
+		// ID: TargyId
 		@Id
 		@GeneratedValue(strategy=GenerationType.AUTO)
-		@Column(name="KEPZES_ID")
-		private long TARGY_ID;
+		@Column(name="TargyId")
+		private long TargyId;
 		
-		public long getKepzesID() { return TARGY_ID; }
+		public long getKepzesID() { return TargyId; }
 		
 		// Targykod
 		@Column(name="Targykod")
 		private String Targykod;
 		
-		private String getTargykod() { return Targykod; }
+		public String getTargykod() { return Targykod; }
 		private void setTargykod(String settargykod) { Targykod = settargykod; }
 		
 		// Kredit
 		@Column(name="Kredit")
 		private String Kredit;
 		
-		private String getKredit() { return Kredit; }
-		private void setKredit(String setkredit) { Kredit = setkredit; }
+		public String getKredit() { return Kredit; }
+		public void setKredit(String setkredit) { Kredit = setkredit; }
 		
 	// ~~~ Connections ~~~
 		
 		@ManyToOne(fetch = FetchType.LAZY)
-		@JoinColumn(name = "KEPZES_ID")	
+		@JoinColumn(name = "KepzesId")	
 		private Kepzes kepzes;
 		
 		public Kepzes getKepzes() {return kepzes;}
@@ -55,14 +55,20 @@ public class Targy {
 		@OneToMany(mappedBy = "targy")
 		private List<Vizsga> vizsgak;
 		
-		public void addVizsga(Vizsga addvizsga) { vizsgak.add(addvizsga); }
+		public void addVizsga(Vizsga addvizsga) { 
+			vizsgak.add(addvizsga);
+			addvizsga.setTargy(this);
+		}
 		public void removeVizsga(Vizsga removevizsga) { vizsgak.remove(removevizsga); }
 		
 		
-		@ManyToMany
+		@ManyToMany(mappedBy="targyak")
 		private List<Hallgato> hallgatok;
 		
-		public void addHallgato(Hallgato addhallgato) { hallgatok.add(addhallgato); }
+		public void addHallgato(Hallgato addhallgato) { 
+			hallgatok.add(addhallgato); 
+			addhallgato.addTargy(this); 
+		}
 		public void removeHallgato(Hallgato removehallgato) { hallgatok.remove(removehallgato); }
 	
 		

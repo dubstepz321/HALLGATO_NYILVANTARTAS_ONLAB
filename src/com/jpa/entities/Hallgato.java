@@ -19,20 +19,20 @@ import javax.persistence.Table;
 public class Hallgato {
 	// ~~~ Attributes ~~~
 	
-		// ID: HALLGATO_ID
+		// ID: HallgatoId
 		@Id
 		@GeneratedValue(strategy=GenerationType.AUTO)
-		@Column(name="HALLGATO_ID")
-		private long HALLGATO_ID;
+		@Column(name="HallgatoId")
+		private long HallgatoId;
 
-		public long getHallgatoID() { return HALLGATO_ID; }
+		public long getHallgatoID() { return HallgatoId; }
 
 		// Nev
 		@Column(name="Nev")
 		private String Nev;
 
-		private String getNev() { return Nev; }
-		private void setNev(String setnev) { Nev = setnev; }
+		public String getNev() { return Nev; }
+		public void setNev(String setnev) { Nev = setnev; }
 		
 		// Neptun
 		@Column(name="Neptun")
@@ -52,7 +52,7 @@ public class Hallgato {
 	// ~~~ Connections ~~~
 		
 		@ManyToOne(fetch = FetchType.LAZY)
-		@JoinColumn(name = "KEPZES_ID")	
+		@JoinColumn(name = "KepzesId")	
 		private Kepzes kepzes;
 		
 		public Kepzes getKepzes() {return kepzes;}
@@ -62,14 +62,20 @@ public class Hallgato {
 		@ManyToMany
 		private List<Targy> targyak;
 		
-		public void addTargy(Targy addtargy) { targyak.add(addtargy); }
+		public void addTargy(Targy addtargy) { 
+			targyak.add(addtargy); 
+			addtargy.addHallgato(this);
+		}
 		public void removeTargy(Targy removetargy) { targyak.remove(removetargy); }
 		
 		
 		@ManyToMany
 		private List<Vizsga> vizsgak;
 		
-		public void addVizsga(Vizsga addvizsga) { vizsgak.add(addvizsga); }
+		public void addVizsga(Vizsga addvizsga) { 
+			vizsgak.add(addvizsga); 
+			addvizsga.addHallgato(this);
+		}
 		public void removeVizsga(Vizsga removevizsga) { vizsgak.remove(removevizsga); }
 		
 	
