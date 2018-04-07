@@ -19,42 +19,42 @@ import javax.persistence.Table;
 public class Hallgato {
 	// ~~~ Attributes ~~~
 	
-		// ID: HallgatoId
+		// ID: hallgatoId
 
 		@Id
 		@GeneratedValue(strategy=GenerationType.AUTO)
-		@Column(name="HallgatoId")
-		private long HallgatoId;
+		@Column(name="hallgatoId")
+		private long hallgatoId;
 
-		public long getHallgatoID() { return HallgatoId; }
+		public long getHallgatoID() { return hallgatoId; }
 
-		// Nev
-		@Column(name="Nev")
-		private String Nev;
+		// nev
+		@Column(name="nev")
+		private String nev;
 
 
-		public String getNev() { return Nev; }
-		public void setNev(String setnev) { Nev = setnev; }
+		public String getNev() { return nev; }
+		public void setNev(String setnev) { nev = setnev; }
 
-		// Neptun
-		@Column(name="Neptun")
-		private String Neptun;
+		// neptun
+		@Column(name="neptun")
+		private String neptun;
 		
-		public String getNeptun() { return Neptun; }
-		public void setNeptun(String setneptun) { Neptun = setneptun; }
+		public String getNeptun() { return neptun; }
+		public void setNeptun(String setneptun) { neptun = setneptun; }
 		
-		// Jelszo
-		@Column(name ="Jelszo")
-		private String Jelszo;
+		// jelszo
+		@Column(name ="jelszo")
+		private String jelszo;
 		
-		public String getJelszo() { return Jelszo; }
-		public void setJelszo(String setjelszo) { Jelszo = setjelszo; }
+		public String getJelszo() { return jelszo; }
+		public void setJelszo(String setjelszo) { jelszo = setjelszo; }
 		
 
 	// ~~~ Connections ~~~
 		
 		@ManyToOne(fetch = FetchType.LAZY)
-		@JoinColumn(name = "KepzesId")	
+		@JoinColumn(name = "kepzesId")	
 		private Kepzes kepzes;
 		
 		public Kepzes getKepzes() {return kepzes;}
@@ -69,7 +69,10 @@ public class Hallgato {
 			addtargy.addHallgato(this);
 		}
 
-		public void removeTargy(Targy removetargy) { targyak.remove(removetargy); }
+		public void removeTargy(Targy removetargy) { 
+			targyak.remove(removetargy); 
+			removetargy.removeHallgato(this);
+		}
 		
 		
 		@ManyToMany
@@ -79,7 +82,10 @@ public class Hallgato {
 			vizsgak.add(addvizsga); 
 			addvizsga.addHallgato(this);
 		}
-		public void removeVizsga(Vizsga removevizsga) { vizsgak.remove(removevizsga); }
+		public void removeVizsga(Vizsga removevizsga) { 
+			vizsgak.remove(removevizsga); 
+			removevizsga.removeHallgato(this);
+		}
 		
 	
 }

@@ -16,20 +16,20 @@ public class Kepzes {
 	
 	// ~~~ Attributes ~~~
 	
-		// ID: KepzesId
+		// ID: kepzesId
 		@Id
 		@GeneratedValue(strategy=GenerationType.AUTO)
-		@Column(name="KepzesId")
-		private long KepzesId;
+		@Column(name="kepzesId")
+		private long kepzesId;
 	
-		public long getKepzesID() { return KepzesId; }
+		public long getKepzesID() { return kepzesId; }
 	
-		// Nev
-		@Column(name="Nev")
-		private String Nev;
+		// nev
+		@Column(name="nev")
+		private String nev;
 	
-		public String getNev() { return Nev; }
-		public void setNev(String setnev) { Nev = setnev; }
+		public String getNev() { return nev; }
+		public void setNev(String setnev) { nev = setnev; }
 	
 	
 	// ~~~ Connections ~~~
@@ -41,7 +41,10 @@ public class Kepzes {
 			targyak.add(addtargy); 
 			addtargy.setKepzes(this); 
 		}
-		public void removeTargy(Targy removetargy) { targyak.remove(removetargy); }
+		public void removeTargy(Targy removetargy) { 
+			targyak.remove(removetargy); 
+			removetargy.setKepzes(null);
+		}
 	
 		
 		@OneToMany(mappedBy = "kepzes")
@@ -51,7 +54,10 @@ public class Kepzes {
 			hallgatok.add(addhallgato); 
 			addhallgato.setKepzes(this);
 		}
-		public void removeHallgato(Hallgato removehallgato) { hallgatok.remove(removehallgato); }
+		public void removeHallgato(Hallgato removehallgato) { 
+			hallgatok.remove(removehallgato); 
+			removehallgato.setKepzes(null);
+		}
 	
 	
 	

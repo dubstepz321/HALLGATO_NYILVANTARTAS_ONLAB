@@ -20,32 +20,39 @@ public class Targy {
 	
 	// ~~~ Attributes ~~~
 	
-		// ID: TargyId
+		// ID: targyId
 		@Id
 		@GeneratedValue(strategy=GenerationType.AUTO)
-		@Column(name="TargyId")
-		private long TargyId;
+		@Column(name="targyId")
+		private int targyId;
 		
-		public long getKepzesID() { return TargyId; }
+		public int getTargyId() { return targyId; }
 		
-		// Targykod
-		@Column(name="Targykod")
-		private String Targykod;
+		// targykod
+		@Column(name="targykod")
+		private String targykod;
 		
-		public String getTargykod() { return Targykod; }
-		public void setTargykod(String settargykod) { Targykod = settargykod; }
+		public String getTargykod() { return targykod; }
+		public void setTargykod(String settargykod) { targykod = settargykod; }
 		
-		// Kredit
-		@Column(name="Kredit")
-		private String Kredit;
+		// targynev
+		@Column(name="targynev")
+		private String targynev;
 		
-		public String getKredit() { return Kredit; }
-		public void setKredit(String setkredit) { Kredit = setkredit; }
+		public String getTargynev() { return targynev; }
+		public void setTargynev(String targynev) { this.targynev = targynev; }
+
+		// kredit
+		@Column(name="kredit")
+		private String kredit;
+		
+		public String getKredit() { return kredit; }
+		public void setKredit(String setkredit) { kredit = setkredit; }
 		
 	// ~~~ Connections ~~~
 		
 		@ManyToOne(fetch = FetchType.LAZY)
-		@JoinColumn(name = "KepzesId")	
+		@JoinColumn(name = "kepzesId")	
 		private Kepzes kepzes;
 		
 		public Kepzes getKepzes() {return kepzes;}
@@ -59,7 +66,10 @@ public class Targy {
 			vizsgak.add(addvizsga);
 			addvizsga.setTargy(this);
 		}
-		public void removeVizsga(Vizsga removevizsga) { vizsgak.remove(removevizsga); }
+		public void removeVizsga(Vizsga removevizsga) { 
+			vizsgak.remove(removevizsga); 
+			removevizsga.setTargy(null);
+		}
 		
 		
 		@ManyToMany(mappedBy="targyak")
@@ -69,7 +79,10 @@ public class Targy {
 			hallgatok.add(addhallgato); 
 			addhallgato.addTargy(this); 
 		}
-		public void removeHallgato(Hallgato removehallgato) { hallgatok.remove(removehallgato); }
+		public void removeHallgato(Hallgato removehallgato) { 
+			hallgatok.remove(removehallgato); 
+			removehallgato.removeTargy(this);
+		}
 	
 		
 }

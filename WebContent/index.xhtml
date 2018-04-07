@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body> 
+
+<h:form>
+<h:inputText value="#{targyController.targy.targykod}"/>
+<h:commandButton value="OK" action="#{targyController.create}"/>
+</h:form>
+
+
+<h:form>
+<h:dataTable value="#{targyController.targyak}" var="targy">
+	<h:column>
+		<f:facet name="header">Tárgykód</f:facet>
+		<h:outputText value="#{targy.targykod}"/>
+
+	</h:column>
+	<h:column>
+               <f:facet name = "header">Delete</f:facet>
+               <h:commandButton value = "Delete" 
+                  action = "#{targyController.deleteById(targy.targyId)}"  />                        
+    </h:column>
+     
+</h:dataTable>
+</h:form>
+
+<h:form>
+   <h3>Register</h3>
+   <h:commandButton type="submit" action = "register" value = "register" />
+</h:form>
+
+</body> 
+</html>
+

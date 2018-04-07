@@ -20,24 +20,34 @@ public class Vizsga {
 	
 	// ~~~ Attributes ~~~
 	
-		// ID: VizsgaId
+		// ID: vizsgaId
 		@Id
 		@GeneratedValue(strategy=GenerationType.AUTO)
-		@Column(name="VizsgaId")
-		private long VizsgaId;
+		@Column(name="vizsgaId")
+		private long vizsgaId;
 	
-		public long getKepzesID() { return VizsgaId; }
+		public long getKepzesID() { return vizsgaId; }
 	
-		// Nev
-		@Column(name="Idopont")
-		private Date Idopont;
+		// idopont
+		@Column(name="idopont")
+		private Date idopont;
 	
-		public Date getIdopont() { return Idopont; }
-		public void setIdopont(Date setidopont) { Idopont = setidopont; }
+		public Date getIdopont() { return idopont; }
+		public void setIdopont(Date setidopont) { idopont = setidopont; }
+		
+		// Targynev
+		@Column(name="targynev")
+		private String targynev;
+		
+		public String getTargynev() { return targynev; }
+		public void setTargynev(String targynev) { this.targynev = targynev; }
+		
 	
 	
 	// ~~~ Connections ~~~
 	
+		
+
 		@ManyToOne(fetch = FetchType.LAZY)
 		@JoinColumn(name = "TargyId")	
 		private Targy targy;
@@ -53,6 +63,9 @@ public class Vizsga {
 			hallgatok.add(addhallgato); 
 			addhallgato.addVizsga(this);
 		}
-		public void removeHallgato(Hallgato removehallgato) { hallgatok.remove(removehallgato); }
+		public void removeHallgato(Hallgato removehallgato) { 
+			hallgatok.remove(removehallgato); 
+			removehallgato.removeVizsga(this);
+		}
 
 }
