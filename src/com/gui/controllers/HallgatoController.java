@@ -15,9 +15,11 @@ import come.ejb.services.impl.HallgatoDao;
 
 
 
+
 @Named
 @RequestScoped
 public class HallgatoController {
+	
 	@EJB
 	HallgatoDao hallgatoDao;
 	
@@ -25,6 +27,7 @@ public class HallgatoController {
 	
 	private List<Hallgato> hallgatok;
 	
+
 	
 	public void create()
 	{
@@ -44,20 +47,32 @@ public class HallgatoController {
 	
 	
 	
+	
 	public String checkAccount()
 	{	
-			
+		for(Hallgato hallgatotemp : hallgatok) {hallgatotemp.falseLogin(); hallgatoDao.update(hallgatotemp); }
+		
 		for(Hallgato hallgatotemp : hallgatok)
 		{
 			if(hallgatotemp.getNeptun().equals(hallgato.getNeptun())  &&  hallgatotemp.getJelszo().equals((String)hallgato.getJelszo()))
 				{ 
-				
-				
+				hallgatotemp.trueLogin();
+				hallgatoDao.update(hallgatotemp);
+				init();
 				return "loggedin.xhtml?faces-redirect=true"; }
 		}
 		return "login.xhtml";
 	}
 	
+	public Hallgato loggedAccount()
+	{
+		for(Hallgato hallgatotemp : hallgatok)
+		{
+			if(hallgatotemp.isLogin())
+				return hallgatotemp;
+		}
+		return null;
+	}
 	
 
 	@PostConstruct
@@ -65,6 +80,9 @@ public class HallgatoController {
 		hallgato = new Hallgato();
 		hallgatok = hallgatoDao.findAll();
 	}
+	
+	
+	
 	
 	
 	

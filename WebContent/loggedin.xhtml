@@ -4,17 +4,48 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"> 
 
-<h:head></h:head> 
+<h:head>
+<h:form>
+   <h:commandButton action = "login.xhtml" value = "LOG OUT" />
+</h:form>
+<hr />
+</h:head> 
+
 <body> 
 
-<h:dataTable value="#{loginController.logins}" var="login">
+
+<h:form>
+<h:dataTable value="#{hallgatoController.hallgatok}" var="hallgato">
 	<h:column>
-		<f:facet name="header">Neptun</f:facet>
-		<h:outputText value="#{login.hallgato.neptun}"/>
+		<f:facet name="header">Nev</f:facet>
+		<h:outputText value="#{hallgato.nev}"/>
 
 	</h:column>
+	<h:column>
+		<f:facet name="header">Neptun</f:facet>
+		<h:outputText value="#{hallgato.neptun}"/>
+
+	</h:column>
+	<h:column>
+		<f:facet name="header">Jelszo</f:facet>
+		<h:outputText value="#{hallgato.jelszo}"/>
+
+	</h:column>
+	<h:column>
+		<f:facet name="header">IsLogin</f:facet>
+		<h:outputText value="#{hallgato.login}"/>
+
+	</h:column>
+	<h:column>
+               <f:facet name = "header">Delete</f:facet>
+               <h:commandButton value = "Delete" 
+                  action = "#{hallgatoController.deleteById(hallgato.hallgatoID)}"  />                        
+    </h:column>
      
 </h:dataTable>
-	
+
+<h:outputText value="#{hallgatoController.loggedAccount().neptun}"/> 
+</h:form>
+
 </body> 
 </html>

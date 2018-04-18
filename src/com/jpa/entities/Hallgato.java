@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -50,9 +51,25 @@ public class Hallgato {
 		public String getJelszo() { return jelszo; }
 		public void setJelszo(String setjelszo) { jelszo = setjelszo; }
 		
+		// logged in
+		@Column(name = "login")
+		private boolean login;
+		
+		public boolean isLogin() {
+			return login;
+		}
+		public void trueLogin() {
+			login = true;
+		}
+		
+		public void falseLogin() {
+			login = false;
+		}
 
 	// ~~~ Connections ~~~
 		
+		
+
 		@ManyToOne(fetch = FetchType.LAZY)
 		@JoinColumn(name = "kepzesId")	
 		private Kepzes kepzes;
@@ -87,5 +104,8 @@ public class Hallgato {
 			removevizsga.removeHallgato(this);
 		}
 		
-	
+		
+		
+		
+		
 }
