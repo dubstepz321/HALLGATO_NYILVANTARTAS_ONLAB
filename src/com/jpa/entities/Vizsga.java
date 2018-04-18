@@ -24,9 +24,9 @@ public class Vizsga {
 		@Id
 		@GeneratedValue(strategy=GenerationType.AUTO)
 		@Column(name="vizsgaId")
-		private long vizsgaId;
+		private int vizsgaId;
 	
-		public long getKepzesID() { return vizsgaId; }
+		public int getKepzesID() { return vizsgaId; }
 	
 		// idopont
 		@Column(name="idopont")

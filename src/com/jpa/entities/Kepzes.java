@@ -20,9 +20,9 @@ public class Kepzes {
 		@Id
 		@GeneratedValue(strategy=GenerationType.AUTO)
 		@Column(name="kepzesId")
-		private long kepzesId;
+		private int kepzesId;
 	
-		public long getKepzesID() { return kepzesId; }
+		public int getKepzesID() { return kepzesId; }
 	
 		// nev
 		@Column(name="nev")

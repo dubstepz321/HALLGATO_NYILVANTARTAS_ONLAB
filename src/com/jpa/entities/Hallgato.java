@@ -23,10 +23,10 @@ public class Hallgato {
 
 		@Id
 		@GeneratedValue(strategy=GenerationType.AUTO)
-		@Column(name="hallgatoId")
-		private long hallgatoId;
+		@Column(name="hallgatoID")
+		private int hallgatoID;
 
-		public long getHallgatoID() { return hallgatoId; }
+		public int getHallgatoID() { return hallgatoID; }
 
 		// nev
 		@Column(name="nev")
