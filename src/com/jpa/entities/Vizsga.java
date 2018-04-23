@@ -1,6 +1,6 @@
 package com.jpa.entities;
 
-import java.util.Date;
+
 import java.util.List;
 
 import javax.persistence.Column;
@@ -26,14 +26,14 @@ public class Vizsga {
 		@Column(name="vizsgaId")
 		private int vizsgaId;
 	
-		public int getKepzesID() { return vizsgaId; }
+		public int getVizsgaID() { return vizsgaId; }
 	
 		// idopont
 		@Column(name="idopont")
-		private Date idopont;
+		private String idopont;
 	
-		public Date getIdopont() { return idopont; }
-		public void setIdopont(Date setidopont) { idopont = setidopont; }
+		public String getIdopont() { return idopont; }
+		public void setIdopont(String setidopont) { idopont = setidopont; }
 		
 		// Targynev
 		@Column(name="targynev")

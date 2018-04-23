@@ -47,5 +47,71 @@
 <h:outputText value="#{hallgatoController.loggedAccount().neptun}"/> 
 </h:form>
 
+<hr />
+
+<h:form>
+<h:dataTable value="#{hallgatoController.loggedAccount().targyak}" var="targy">
+	<h:column>
+		<f:facet name="header">TargyID</f:facet>
+		<h:outputText value="#{targy.targyId}"/>
+	</h:column>
+	<h:column>
+		<f:facet name="header">Targykod</f:facet>
+		<h:outputText value="#{targy.targykod}"/>
+	</h:column>
+	<h:column>
+		<f:facet name="header">Targynev</f:facet>
+		<h:outputText value="#{targy.targynev}"/>
+	</h:column>
+	<h:column>
+		<f:facet name="header">Kredit</f:facet>
+		<h:outputText value="#{targy.kredit}"/>
+	</h:column>
+	
+
+	<h:column>
+               <f:facet name = "header">Remove</f:facet>
+               <h:commandButton value = "Remove" 
+                  action = "#{hallgatoController.loggedAccount().removeTargy(targy)}"  />                        
+    </h:column>
+     
+</h:dataTable>
+
+<h:outputText value="#{hallgatoController.loggedAccount().neptun}"/> 
+</h:form>
+
+
+<h:form>
+<h:dataTable value="#{targyController.targyak}" var="targy">
+	<h:column>
+		<f:facet name="header">TargyID</f:facet>
+		<h:outputText value="#{targy.targyId}"/>
+	</h:column>
+	<h:column>
+		<f:facet name="header">Targykod</f:facet>
+		<h:outputText value="#{targy.targykod}"/>
+	</h:column>
+	<h:column>
+		<f:facet name="header">Targynev</f:facet>
+		<h:outputText value="#{targy.targynev}"/>
+	</h:column>
+	<h:column>
+		<f:facet name="header">Kredit</f:facet>
+		<h:outputText value="#{targy.kredit}"/>
+	</h:column>
+	
+
+	<h:column>
+               <f:facet name = "header">Add</f:facet>
+               <h:commandButton value = "Add" 
+                  action = "#{hallgatoController.loggedAccount().addTargy(targy)}"  />                        
+    </h:column>
+     
+</h:dataTable>
+
+
+</h:form>
+
+
 </body> 
 </html>

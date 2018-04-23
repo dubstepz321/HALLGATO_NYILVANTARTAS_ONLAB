@@ -7,8 +7,10 @@ import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
+
 import com.jpa.entities.Targy;
 
+import come.ejb.services.impl.KepzesDao;
 import come.ejb.services.impl.TargyDao;
 
 @Named
@@ -42,6 +44,33 @@ public class TargyController {
 		targyDao.deleteById(id);
 		init();
 	}
+	
+	
+	
+	///////
+	@EJB
+	KepzesDao kepzesDao;
+	
+	private int kepzesID;
+	
+	public int getKepzesID() {
+		return kepzesID;
+	}
+
+	public void setKepzesID(int kepzesID) {
+		this.kepzesID = kepzesID;
+	}
+
+	
+	public void createAndLink(int kepzesid)
+	{
+		targy.setKepzes(kepzesDao.findById(kepzesid));
+		
+		targyDao.create(targy);
+		init();
+	}
+	
+	//////
 	
 	
 	
