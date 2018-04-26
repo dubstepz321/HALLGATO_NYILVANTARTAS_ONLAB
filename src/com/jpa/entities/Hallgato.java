@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -69,7 +70,7 @@ public class Hallgato {
 		
 		
 
-		@ManyToOne(fetch = FetchType.LAZY)
+		@ManyToOne(fetch = FetchType.EAGER)
 		@JoinColumn(name = "kepzesId")	
 		private Kepzes kepzes;
 		
@@ -77,7 +78,11 @@ public class Hallgato {
 		public void setKepzes(Kepzes setkepzes) { kepzes = setkepzes; }
 				
 
-		@ManyToMany
+		@ManyToMany(fetch = FetchType.EAGER)
+		/*@JoinTable(
+			      name="HALGATO_TARGY",
+			      joinColumns=@JoinColumn(name="EMP_ID", referencedColumnName="ID"),
+			      inverseJoinColumns=@JoinColumn(name="PROJ_ID", referencedColumnName="ID"))*/
 		private List<Targy> targyak;
 		
 		public void addTargy(Targy addtargy) { 
@@ -94,7 +99,7 @@ public class Hallgato {
 			return targyak;
 		}
 
-		@ManyToMany
+		@ManyToMany(fetch = FetchType.EAGER)
 		private List<Vizsga> vizsgak;
 		
 		public void addVizsga(Vizsga addvizsga) { 

@@ -48,7 +48,7 @@ public class Vizsga {
 	
 		
 
-		@ManyToOne(fetch = FetchType.LAZY)
+		@ManyToOne(fetch = FetchType.EAGER)
 		@JoinColumn(name = "TargyId")	
 		private Targy targy;
 		

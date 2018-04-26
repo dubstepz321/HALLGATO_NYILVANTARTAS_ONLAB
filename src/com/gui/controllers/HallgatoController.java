@@ -9,7 +9,7 @@ import javax.inject.Named;
 
 
 import com.jpa.entities.Hallgato;
-
+import com.jpa.entities.Targy;
 
 import come.ejb.services.impl.HallgatoDao;
 
@@ -80,6 +80,16 @@ public class HallgatoController {
 		hallgato = new Hallgato();
 		hallgatok = hallgatoDao.findAll();
 	}
+	
+	
+	public List<Targy> getLoggedTargyak()
+	{
+		List<Targy> targyak;
+		targyak = loggedAccount().getTargyak();
+		
+		return targyak;
+	}
+	
 	
 	
 	

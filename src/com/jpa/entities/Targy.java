@@ -51,7 +51,7 @@ public class Targy {
 		
 	// ~~~ Connections ~~~
 		
-		@ManyToOne(fetch = FetchType.LAZY)
+		@ManyToOne(fetch = FetchType.EAGER)
 		@JoinColumn(name = "kepzesId")	
 		private Kepzes kepzes;
 		

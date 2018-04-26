@@ -14,6 +14,12 @@
 <body> 
 
 
+<h:outputText value="#{hallgatoController.loggedAccount().neptun}"/> 
+
+
+
+
+
 <h:form>
 <h:dataTable value="#{hallgatoController.hallgatok}" var="hallgato">
 	<h:column>
@@ -44,13 +50,20 @@
      
 </h:dataTable>
 
-<h:outputText value="#{hallgatoController.loggedAccount().neptun}"/> 
+
 </h:form>
+
+
+
+
+
+
+
 
 <hr />
 
 <h:form>
-<h:dataTable value="#{hallgatoController.loggedAccount().targyak}" var="targy">
+<h:dataTable value="#{hallgatoController.loggedTargyak}" var="targy">
 	<h:column>
 		<f:facet name="header">TargyID</f:facet>
 		<h:outputText value="#{targy.targyId}"/>
@@ -79,6 +92,18 @@
 
 <h:outputText value="#{hallgatoController.loggedAccount().neptun}"/> 
 </h:form>
+
+
+
+
+
+
+
+
+
+
+
+<hr />
 
 
 <h:form>
