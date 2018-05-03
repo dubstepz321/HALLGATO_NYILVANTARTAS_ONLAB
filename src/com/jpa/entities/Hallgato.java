@@ -1,7 +1,9 @@
 package com.jpa.entities;
 
 
-import java.util.List;
+
+import java.util.Iterator;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
+//import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -71,7 +73,7 @@ public class Hallgato {
 		
 
 		@ManyToOne(fetch = FetchType.EAGER)
-		@JoinColumn(name = "kepzesId")	
+		@JoinColumn(name = "kepzesId")
 		private Kepzes kepzes;
 		
 		public Kepzes getKepzes() {return kepzes;}
@@ -79,11 +81,7 @@ public class Hallgato {
 				
 
 		@ManyToMany(fetch = FetchType.EAGER)
-		/*@JoinTable(
-			      name="HALGATO_TARGY",
-			      joinColumns=@JoinColumn(name="EMP_ID", referencedColumnName="ID"),
-			      inverseJoinColumns=@JoinColumn(name="PROJ_ID", referencedColumnName="ID"))*/
-		private List<Targy> targyak;
+		private Set<Targy> targyak;
 		
 		public void addTargy(Targy addtargy) { 
 			targyak.add(addtargy); 
@@ -95,12 +93,32 @@ public class Hallgato {
 			removetargy.removeHallgato(this);
 		}
 		
-		public List<Targy> getTargyak() {
+		public void removeTargyById(int id) { 
+			Iterator<Targy> iter = targyak.iterator();
+
+			while (iter.hasNext()) {
+			    Targy str = iter.next();
+
+			    if (str.getTargyId() == id)
+			        iter.remove();
+			}
+			/*
+			for(Targy targy : targyak)
+			{
+				if(targy.getTargyId()==id)
+					targyak.remove(targy);
+			}*/
+			
+			
+		}
+		
+		
+		public Set<Targy> getTargyak() {
 			return targyak;
 		}
 
 		@ManyToMany(fetch = FetchType.EAGER)
-		private List<Vizsga> vizsgak;
+		private Set<Vizsga> vizsgak;
 		
 		public void addVizsga(Vizsga addvizsga) { 
 			vizsgak.add(addvizsga); 
@@ -109,6 +127,21 @@ public class Hallgato {
 		public void removeVizsga(Vizsga removevizsga) { 
 			vizsgak.remove(removevizsga); 
 			removevizsga.removeHallgato(this);
+		}
+		
+		public void removeVizsgaById(int id) { 
+			Iterator<Vizsga> iter = vizsgak.iterator();
+
+			while (iter.hasNext()) {
+			    Vizsga str = iter.next();
+
+			    if (str.getVizsgaID() == id)
+			        iter.remove();
+			}
+		}
+		
+		public Set<Vizsga> getVizsgak() {
+			return vizsgak;
 		}
 		
 		

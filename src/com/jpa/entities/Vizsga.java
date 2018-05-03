@@ -1,7 +1,8 @@
 package com.jpa.entities;
 
 
-import java.util.List;
+
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -56,16 +57,14 @@ public class Vizsga {
 		public void setTargy(Targy settargy) { targy = settargy; }
 				
 	
-		@ManyToMany(mappedBy="vizsgak")
-		private List<Hallgato> hallgatok;
+		@ManyToMany(fetch = FetchType.EAGER, mappedBy="vizsgak")
+		private Set<Hallgato> hallgatok;
 		
 		public void addHallgato(Hallgato addhallgato) { 
 			hallgatok.add(addhallgato); 
-			addhallgato.addVizsga(this);
 		}
 		public void removeHallgato(Hallgato removehallgato) { 
 			hallgatok.remove(removehallgato); 
-			removehallgato.removeVizsga(this);
 		}
 
 }

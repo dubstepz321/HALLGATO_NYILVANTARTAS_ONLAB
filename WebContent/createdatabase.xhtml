@@ -149,12 +149,12 @@
 <h:form>
 <h:dataTable value="#{vizsgaController.vizsgak}" var="vizsga">
 	<h:column>
-		<f:facet name="header">Targykod</f:facet>
-		<h:outputText value="#{vizsga.idopont}"/>
-	</h:column>
-	<h:column>
 		<f:facet name="header">Targynev</f:facet>
 		<h:outputText value="#{vizsga.targynev}"/>
+	</h:column>
+	<h:column>
+		<f:facet name="header">Idopont</f:facet>
+		<h:outputText value="#{vizsga.idopont}"/>
 	</h:column>
 	<h:column>
                <f:facet name = "header">Delete</f:facet>

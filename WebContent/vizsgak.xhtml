@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+<h:form>
+<h:commandButton action = "loggedin.xhtml" value = "USER INTERFACE" />
+</h:form>
+<h1>TARGYAK</h1>
+</h:head> 
+<body> 
+
+
+<h:form>
+<h:dataTable value="#{hallgatoController.loggedTargyak}" var="targy">
+	<h:column>
+		<f:facet name="header">TargyID</f:facet>
+		<h:outputText value="#{targy.targyId}"/>
+	</h:column>
+	<h:column>
+		<f:facet name="header">Targykod</f:facet>
+		<h:outputText value="#{targy.targykod}"/>
+	</h:column>
+	<h:column>
+		<f:facet name="header">Targynev</f:facet>
+		<h:outputText value="#{targy.targynev}"/>
+	</h:column>
+	<h:column>
+		<f:facet name="header">Kredit</f:facet>
+		<h:outputText value="#{targy.kredit}"/>
+	</h:column>
+	
+
+	<h:column>
+               <f:facet name = "header">Remove</f:facet>
+               <h:commandButton value = "Remove" 
+                  action = "#{hallgatoController.removeTargyFromLoggedAccount(targy.targyId)}"  />                        
+    </h:column>
+     
+</h:dataTable>
+
+
+</h:form>
+
+
+
+
+
+
+
+
+
+
+
+<hr />
+
+
+<h:form>
+<h:dataTable value="#{targyController.targyak}" var="targy">
+	<h:column>
+		<f:facet name="header">TargyID</f:facet>
+		<h:outputText value="#{targy.targyId}"/>
+	</h:column>
+	<h:column>
+		<f:facet name="header">Targykod</f:facet>
+		<h:outputText value="#{targy.targykod}"/>
+	</h:column>
+	<h:column>
+		<f:facet name="header">Targynev</f:facet>
+		<h:outputText value="#{targy.targynev}"/>
+	</h:column>
+	<h:column>
+		<f:facet name="header">Kredit</f:facet>
+		<h:outputText value="#{targy.kredit}"/>
+	</h:column>
+	
+
+	<h:column>
+               <f:facet name = "header">Add</f:facet>
+               <h:commandButton value = "Add" 
+                  action = "#{hallgatoController.addTargyToLoggedAccount(targy)}"  />                        
+    </h:column>
+     
+</h:dataTable>
+
+
+</h:form>
+
+
+</body> 
+</html>

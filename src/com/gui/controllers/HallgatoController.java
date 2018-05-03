@@ -1,6 +1,7 @@
 package com.gui.controllers;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -74,6 +75,24 @@ public class HallgatoController {
 		return null;
 	}
 	
+	public void addTargyToLoggedAccount(Targy targy)
+	{
+		Hallgato loggedAccount = loggedAccount();
+		loggedAccount.addTargy(targy);
+		hallgatoDao.update(loggedAccount);
+		
+		init();
+	}
+	
+	public void removeTargyFromLoggedAccount(int id)
+	{
+		Hallgato loggedAccount = loggedAccount();
+		loggedAccount.removeTargyById(id);
+		hallgatoDao.update(loggedAccount);
+		
+		init();
+	}
+	
 
 	@PostConstruct
 	public void init() {
@@ -82,9 +101,9 @@ public class HallgatoController {
 	}
 	
 	
-	public List<Targy> getLoggedTargyak()
+	public Set<Targy> getLoggedTargyak()
 	{
-		List<Targy> targyak;
+		Set<Targy> targyak;
 		targyak = loggedAccount().getTargyak();
 		
 		return targyak;
