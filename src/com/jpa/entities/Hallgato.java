@@ -78,6 +78,7 @@ public class Hallgato {
 		
 		public Kepzes getKepzes() {return kepzes;}
 		public void setKepzes(Kepzes setkepzes) { kepzes = setkepzes; }
+		public void removeKepzes() { kepzes = null; }
 				
 
 		@ManyToMany(fetch = FetchType.EAGER)
@@ -112,6 +113,11 @@ public class Hallgato {
 			
 		}
 		
+		public void removeAllTargy()
+		{
+			targyak.clear();
+		}
+		
 		
 		public Set<Targy> getTargyak() {
 			return targyak;
@@ -138,6 +144,11 @@ public class Hallgato {
 			    if (str.getVizsgaID() == id)
 			        iter.remove();
 			}
+		}
+		
+		public void removeAllVizsga()
+		{
+			vizsgak.clear();
 		}
 		
 		public Set<Vizsga> getVizsgak() {

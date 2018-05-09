@@ -10,6 +10,7 @@ import javax.inject.Named;
 
 
 import com.jpa.entities.Hallgato;
+import com.jpa.entities.Kepzes;
 import com.jpa.entities.Targy;
 
 import come.ejb.services.impl.HallgatoDao;
@@ -84,10 +85,30 @@ public class HallgatoController {
 		init();
 	}
 	
+	public void setKepzesToLoggedAccount(Kepzes kepzes)
+	{
+		Hallgato loggedAccount = loggedAccount();
+		loggedAccount.setKepzes(kepzes);
+		hallgatoDao.update(loggedAccount);
+		
+		init();
+	}
+	
 	public void removeTargyFromLoggedAccount(int id)
 	{
 		Hallgato loggedAccount = loggedAccount();
 		loggedAccount.removeTargyById(id);
+		hallgatoDao.update(loggedAccount);
+		
+		init();
+	}
+	
+	public void removeKepzesFromLoggedAccount()
+	{
+		Hallgato loggedAccount = loggedAccount();
+		loggedAccount.removeKepzes();
+		loggedAccount.removeAllTargy();
+		loggedAccount.removeAllVizsga();
 		hallgatoDao.update(loggedAccount);
 		
 		init();
@@ -109,7 +130,12 @@ public class HallgatoController {
 		return targyak;
 	}
 	
-	
+	public Kepzes getLoggedKepzes()
+	{
+		Kepzes kepzes = loggedAccount().getKepzes();
+		
+		return kepzes;
+	}
 	
 	
 	
