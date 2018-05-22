@@ -8,35 +8,50 @@
 <h:form>
 <h:commandButton action = "loggedin.xhtml" value = "USER INTERFACE" />
 </h:form>
-<h1>TARGYAK</h1>
+<h1>VIZSGAK</h1>
 </h:head> 
 <body> 
 
 
 <h:form>
-<h:dataTable value="#{hallgatoController.loggedTargyak}" var="targy">
-	<h:column>
-		<f:facet name="header">TargyID</f:facet>
-		<h:outputText value="#{targy.targyId}"/>
-	</h:column>
-	<h:column>
-		<f:facet name="header">Targykod</f:facet>
-		<h:outputText value="#{targy.targykod}"/>
-	</h:column>
+         <h:panelGrid id = "panel" columns = "2" border = "1"
+            cellpadding = "10" cellspacing = "1">
+            
+            <f:facet name = "header">
+               <h:outputText value = "HALLGATO"/>
+            </f:facet>
+            <h:outputLabel value = "Nev" />
+            <h:outputText value="#{hallgatoController.loggedAccount().nev}" />
+            <h:outputLabel value = "Neptun" />
+            <h:outputText value="#{hallgatoController.loggedAccount().neptun}" />
+            <h:outputLabel value = "Kepzes" />
+            <h:outputText value="#{hallgatoController.loggedAccount().kepzes.nev}" />
+            
+            
+         </h:panelGrid>
+      </h:form>
+      
+<hr />
+
+
+<h:form>
+<h:dataTable value="#{hallgatoController.loggedVizsgak}" var="vizsga">
+
 	<h:column>
 		<f:facet name="header">Targynev</f:facet>
-		<h:outputText value="#{targy.targynev}"/>
+		<h:outputText value="#{vizsga.targynev}"/>
 	</h:column>
 	<h:column>
-		<f:facet name="header">Kredit</f:facet>
-		<h:outputText value="#{targy.kredit}"/>
+		<f:facet name="header">Idopont</f:facet>
+		<h:outputText value="#{targy.idopont}"/>
 	</h:column>
+
 	
 
 	<h:column>
                <f:facet name = "header">Remove</f:facet>
                <h:commandButton value = "Remove" 
-                  action = "#{hallgatoController.removeTargyFromLoggedAccount(targy.targyId)}"  />                        
+                  action = "#{hallgatoController.removeVizsgaFromLoggedAccount(vizsga.vizsgaID)}"  />                        
     </h:column>
      
 </h:dataTable>
@@ -56,31 +71,27 @@
 
 <hr />
 
-
+<h3>FELVEHETO VIZSGAK (csak a felvett targyakhoz vehetoek fel)</h3>
 <h:form>
-<h:dataTable value="#{targyController.targyak}" var="targy">
-	<h:column>
-		<f:facet name="header">TargyID</f:facet>
-		<h:outputText value="#{targy.targyId}"/>
-	</h:column>
+<h:dataTable value="#{vizsgaController.vizsgak}" var="vizsga">
 	<h:column>
 		<f:facet name="header">Targykod</f:facet>
-		<h:outputText value="#{targy.targykod}"/>
+		<h:outputText value="#{vizsga.targy.targykod}"/>
 	</h:column>
 	<h:column>
 		<f:facet name="header">Targynev</f:facet>
-		<h:outputText value="#{targy.targynev}"/>
+		<h:outputText value="#{vizsga.targy.targynev}"/>
 	</h:column>
 	<h:column>
-		<f:facet name="header">Kredit</f:facet>
-		<h:outputText value="#{targy.kredit}"/>
+		<f:facet name="header">Idopont</f:facet>
+		<h:outputText value="#{vizsga.idopont}"/>
 	</h:column>
 	
 
 	<h:column>
                <f:facet name = "header">Add</f:facet>
                <h:commandButton value = "Add" 
-                  action = "#{hallgatoController.addTargyToLoggedAccount(targy)}"  />                        
+                  action = "#{hallgatoController.addVizsgaToLoggedAccount(vizsga)}"  />                        
     </h:column>
      
 </h:dataTable>

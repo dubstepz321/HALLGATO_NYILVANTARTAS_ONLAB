@@ -12,6 +12,7 @@ import javax.inject.Named;
 import com.jpa.entities.Hallgato;
 import com.jpa.entities.Kepzes;
 import com.jpa.entities.Targy;
+import com.jpa.entities.Vizsga;
 
 import come.ejb.services.impl.HallgatoDao;
 
@@ -76,19 +77,56 @@ public class HallgatoController {
 		return null;
 	}
 	
+	public void addVizsgaToLoggedAccount(Vizsga vizsga)
+	{
+		Hallgato loggedAccount = loggedAccount();
+		
+		for(Targy targy : loggedAccount.getTargyak())
+		{
+			if(vizsga.getTargy().getTargyId() == targy.getTargyId())
+			{
+				loggedAccount.addVizsga(vizsga);
+				hallgatoDao.update(loggedAccount);
+				init();
+				
+				break;
+			}
+				
+		}
+		
+		
+		
+		
+	}
+	
 	public void addTargyToLoggedAccount(Targy targy)
 	{
 		Hallgato loggedAccount = loggedAccount();
-		loggedAccount.addTargy(targy);
-		hallgatoDao.update(loggedAccount);
 		
-		init();
+		
+		if(loggedAccount.getKepzes() != null && loggedAccount.getKepzes().getKepzesID() == targy.getKepzes().getKepzesID())
+			{	loggedAccount.addTargy(targy);
+				hallgatoDao.update(loggedAccount);
+				init();
+			}
+		
 	}
 	
 	public void setKepzesToLoggedAccount(Kepzes kepzes)
 	{
 		Hallgato loggedAccount = loggedAccount();
-		loggedAccount.setKepzes(kepzes);
+		if(loggedAccount.getKepzes() == null)
+		{	
+			loggedAccount.setKepzes(kepzes);
+			hallgatoDao.update(loggedAccount);
+		}
+		
+		init();
+	}
+	public void removeVizsgaFromLoggedAccount(int id)
+	{
+		Hallgato loggedAccount = loggedAccount();
+		loggedAccount.removeVizsgaById(id);
 		hallgatoDao.update(loggedAccount);
 		
 		init();
@@ -114,12 +152,35 @@ public class HallgatoController {
 		init();
 	}
 	
+	
+	
 
 	@PostConstruct
 	public void init() {
 		hallgato = new Hallgato();
 		hallgatok = hallgatoDao.findAll();
 	}
+	
+	
+	
+	/*
+	Set<Targy> newlist = null;
+	Targy targy;
+	public Set<Targy> getTargyByLoggedKepzes() 
+	{
+		Hallgato loggedAccount = loggedAccount();
+		
+		
+		
+		for(Targy targy : loggedAccount.getTargyak())
+			if ( targy.getKepzes().getKepzesID() == loggedAccount.getKepzes().getKepzesID() )
+			{
+				newlist.add(targy);
+			}
+		
+		return newlist;
+	}*/
+	
 	
 	
 	public Set<Targy> getLoggedTargyak()
@@ -137,7 +198,13 @@ public class HallgatoController {
 		return kepzes;
 	}
 	
-	
+	public Set<Vizsga> getLoggedVizsgak()
+	{
+		Set<Vizsga> vizsgak;
+		vizsgak = loggedAccount().getVizsgak();
+		
+		return vizsgak;
+	}
 	
 	
 	

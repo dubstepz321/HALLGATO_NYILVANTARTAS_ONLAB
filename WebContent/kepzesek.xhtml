@@ -8,17 +8,36 @@
 <h:form>
 <h:commandButton action = "loggedin.xhtml" value = "USER INTERFACE" />
 </h:form>
-<h1>TARGYAK</h1>
+<h1>KEPZESEK</h1>
 </h:head> 
 <body> 
 
 
 <h:form>
+         <h:panelGrid id = "panel" columns = "2" border = "1"
+            cellpadding = "10" cellspacing = "1">
+            
+            <f:facet name = "header">
+               <h:outputText value = "HALLGATO"/>
+            </f:facet>
+            <h:outputLabel value = "Nev" />
+            <h:outputText value="#{hallgatoController.loggedAccount().nev}" />
+            <h:outputLabel value = "Neptun" />
+            <h:outputText value="#{hallgatoController.loggedAccount().neptun}" />
+            <h:outputLabel value = "Kepzes" />
+            <h:outputText value="#{hallgatoController.loggedAccount().kepzes.nev}" />
+            
+            
+         </h:panelGrid>
+      </h:form>
+      
+<hr />
+
+<h3>FELVETT KEPZES</h3>
+
+<h:form>
 <h:dataTable value="#{hallgatoController.loggedKepzes}" var="kepzes">
-	<h:column>
-		<f:facet name="header">KepzesID</f:facet>
-		<h:outputText value="#{kepzes.kepzesID}"/>
-	</h:column>
+
 	<h:column>
 		<f:facet name="header">Kepzes Nev</f:facet>
 		<h:outputText value="#{kepzes.nev}"/>
@@ -49,13 +68,10 @@
 
 <hr />
 
-
+<h3>FELVEHETO KEPZESEK</h3>
 <h:form>
 <h:dataTable value="#{kepzesController.kepzesek}" var="kepzes">
-	<h:column>
-		<f:facet name="header">KepzesID</f:facet>
-		<h:outputText value="#{kepzes.kepzesID}"/>
-	</h:column>
+
 	<h:column>
 		<f:facet name="header">Kepzes Nev</f:facet>
 		<h:outputText value="#{kepzes.nev}"/>
@@ -65,7 +81,7 @@
 
 	<h:column>
                <f:facet name = "header">Add</f:facet>
-               <h:commandButton value = "Add" 
+               <h:commandButton value = "Set" 
                   action = "#{hallgatoController.setKepzesToLoggedAccount(kepzes)}"  />                        
     </h:column>
      

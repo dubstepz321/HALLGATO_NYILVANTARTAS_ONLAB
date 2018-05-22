@@ -2,13 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+      xmlns:h="http://java.sun.com/jsf/html"
+      > 
+      
 
 <h:head>
 <h:form>
    <h:commandButton action = "login.xhtml" value = "LOG OUT" />
 </h:form>
-<hr />
+
+<h1>USER INTERFACE</h1>
+
 </h:head> 
 
 <body> 
@@ -27,12 +31,13 @@
             <h:outputLabel value = "Neptun" />
             <h:outputText value="#{hallgatoController.loggedAccount().neptun}" />
             <h:outputLabel value = "Kepzes" />
-            <h:outputText value="#{hallgatoController.loggedAccount().kepzes}" />
+            <h:outputText value="#{hallgatoController.loggedAccount().kepzes.nev}" />
             
             
          </h:panelGrid>
       </h:form>
 
+<hr />
 
 <h:form>
          <h:panelGrid id = "panel" columns = "3" border = "1"

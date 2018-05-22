@@ -13,13 +13,32 @@
 <body> 
 
 
+<h:form>
+         <h:panelGrid id = "panel" columns = "2" border = "1"
+            cellpadding = "10" cellspacing = "1">
+            
+            <f:facet name = "header">
+               <h:outputText value = "HALLGATO"/>
+            </f:facet>
+            <h:outputLabel value = "Nev" />
+            <h:outputText value="#{hallgatoController.loggedAccount().nev}" />
+            <h:outputLabel value = "Neptun" />
+            <h:outputText value="#{hallgatoController.loggedAccount().neptun}" />
+            <h:outputLabel value = "Kepzes" />
+            <h:outputText value="#{hallgatoController.loggedAccount().kepzes.nev}" />
+            
+            
+         </h:panelGrid>
+      </h:form>
+      
+<hr />
+
+
+<h3>FELVETT TARGYAK</h3>
 
 <h:form>
 <h:dataTable value="#{hallgatoController.loggedTargyak}" var="targy">
-	<h:column>
-		<f:facet name="header">TargyID</f:facet>
-		<h:outputText value="#{targy.targyId}"/>
-	</h:column>
+
 	<h:column>
 		<f:facet name="header">Targykod</f:facet>
 		<h:outputText value="#{targy.targykod}"/>
@@ -57,13 +76,14 @@
 
 <hr />
 
-
+<h3>FELVEHETO TARGYAK (csak a felvett kepzeshez vehetoek fel)</h3>
 <h:form>
 <h:dataTable value="#{targyController.targyak}" var="targy">
 	<h:column>
-		<f:facet name="header">TargyID</f:facet>
-		<h:outputText value="#{targy.targyId}"/>
+		<f:facet name="header">Kepzes</f:facet>
+		<h:outputText value="#{targy.kepzes.nev}"/>
 	</h:column>
+	
 	<h:column>
 		<f:facet name="header">Targykod</f:facet>
 		<h:outputText value="#{targy.targykod}"/>
