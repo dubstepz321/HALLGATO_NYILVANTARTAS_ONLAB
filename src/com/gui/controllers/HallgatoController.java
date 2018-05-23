@@ -8,13 +8,11 @@ import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
-
+import com.ejb.services.impl.HallgatoDao;
 import com.jpa.entities.Hallgato;
 import com.jpa.entities.Kepzes;
 import com.jpa.entities.Targy;
 import com.jpa.entities.Vizsga;
-
-import come.ejb.services.impl.HallgatoDao;
 
 
 

@@ -1,4 +1,4 @@
-package come.ejb.services.impl;
+package com.ejb.services.impl;
 
 
 import javax.ejb.Stateless;

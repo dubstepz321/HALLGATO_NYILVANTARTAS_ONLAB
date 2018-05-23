@@ -1,4 +1,4 @@
-package come.ejb.services.impl;
+package com.ejb.services.impl;
 
 
 import javax.ejb.Stateless;
@@ -6,18 +6,18 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import com.ejb.services.AbstractDao;
-import com.jpa.entities.Hallgato;
+import com.jpa.entities.Vizsga;
 
 
 
 @Stateless
-public class HallgatoDao extends AbstractDao<Hallgato, Integer>{
+public class VizsgaDao extends AbstractDao<Vizsga, Integer>{
 	
 	@PersistenceContext
 	EntityManager em;
 
-	public HallgatoDao(){
-		super(Hallgato.class);
+	public VizsgaDao(){
+		super(Vizsga.class);
 	}
 	
 	@Override

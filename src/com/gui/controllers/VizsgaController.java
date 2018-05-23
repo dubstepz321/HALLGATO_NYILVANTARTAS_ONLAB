@@ -7,11 +7,9 @@ import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
-
+import com.ejb.services.impl.TargyDao;
+import com.ejb.services.impl.VizsgaDao;
 import com.jpa.entities.Vizsga;
-
-import come.ejb.services.impl.TargyDao;
-import come.ejb.services.impl.VizsgaDao;
 
 
 

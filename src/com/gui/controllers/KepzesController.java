@@ -7,10 +7,8 @@ import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
-
+import com.ejb.services.impl.KepzesDao;
 import com.jpa.entities.Kepzes;
-
-import come.ejb.services.impl.KepzesDao;
 
 @Named
 @RequestScoped
